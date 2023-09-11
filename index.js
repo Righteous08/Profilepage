@@ -1,27 +1,59 @@
-async function updateDateAndTime() {
-  try {
-    const response = await fetch(
-      "http://worldtimeapi.org/api/timezone/Africa/Lagos"
-    );
-    const data = await response.json();
-    const time = new Date(data.utc_datetime);
-    const dayOfWeek = new Intl.DateTimeFormat("en-US", {
-      weekday: "long",
-    }).format(time);
-    const formattedTime = time.toLocaleTimeString("en-US", {
-      timeZone: "Africa/Lagos",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    });
-    document.querySelector(".date").textContent = dayOfWeek;
-    document.querySelector(".time").textContent = formattedTime;
-  } catch (error) {
-    console.error("Error fetching time:", error);
-  }
+function updateDateAndTime() {
+  const options = {
+    timeZone: 'Africa/Lagos',
+    weekday: "long",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    };
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const now = new Date();
+  const dayOfWeek = daysOfWeek[now.getUTCDay()];
+  const time = now.toLocaleString('en-US', options);
+  
+  document.querySelector(".date").textContent = dayOfWeek;
+  document.querySelector(".time").textContent = time;
 }
 updateDateAndTime();
 setInterval(updateDateAndTime, 1000);
+
+
+
+
+
+// async function updateDateAndTime() {
+//   try {
+//     const response = await fetch(
+//       "http://worldtimeapi.org/api/timezone/Africa/Lagos"
+//     );
+//     const data = await response.json();
+//     const time = new Date(data.utc_datetime);
+//     const dayOfWeek = new Intl.DateTimeFormat("en-US", {
+//       weekday: "long",
+//     }).format(time);
+//     const formattedTime = time.toLocaleTimeString("en-US", {
+//       timeZone: "Africa/Lagos",
+//       hour: "numeric",
+//       minute: "numeric",
+//       second: "numeric",
+//     });
+//     document.querySelector(".date").textContent = dayOfWeek;
+//     document.querySelector(".time").textContent = formattedTime;
+//   } catch (error) {
+//     console.error("Error fetching time:", error);
+//   }
+// }
+// updateDateAndTime();
+// setInterval(updateDateAndTime, 1000);
 
 // function updateUtcDateAndTime() {
 //   const now = luxon.DateTime.utc();
@@ -47,19 +79,9 @@ setInterval(updateDateAndTime, 1000);
 // updateDateAndTime();
 // setInterval(updateUtcDateAndTime, 1000);
 
-// function updateDateAndTime() {
-//   const daysOfWeek = [
-//     "Sunday",
-//     "Monday",
-//     "Tuesday",
-//     "Wednesday",
-//     "Thursday",
-//     "Friday",
-//     "Saturday",
-//   ];
 
-//   const now = new Date();
-//   const dayOfWeek = daysOfWeek[now.getUTCDay()];
+
+
 
 //   const options = {
 //     hour: "numeric",
