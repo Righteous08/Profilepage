@@ -1,11 +1,11 @@
 function updateDateAndTime() {
   const options = {
-    timeZone: 'Africa/Lagos',
+    timeZone: "UTC",
     weekday: "long",
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
-    };
+  };
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -18,13 +18,32 @@ function updateDateAndTime() {
 
   const now = new Date();
   const dayOfWeek = daysOfWeek[now.getUTCDay()];
+  // const time = now.toLocaleTimeString("en-US", options);
+
   const time = now.toLocaleString('en-US', options);
-  
+
   document.querySelector(".date").textContent = dayOfWeek;
   document.querySelector(".time").textContent = time;
 }
 updateDateAndTime();
 setInterval(updateDateAndTime, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -78,10 +97,6 @@ setInterval(updateDateAndTime, 1000);
 // }
 // updateDateAndTime();
 // setInterval(updateUtcDateAndTime, 1000);
-
-
-
-
 
 //   const options = {
 //     hour: "numeric",
