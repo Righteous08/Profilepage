@@ -51,14 +51,22 @@ function updateDateAndTime() {
 
   const now = new Date();
   const dayOfWeek = daysOfWeek[now.getUTCDay()];
-  const hours = now.getUTCHours();
-  const minutes = now.getUTCMinutes();
-  const seconds = now.getUTCSeconds();
 
-  const time = `${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  // const time = now.toUTCString().split(" ")[4];
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    timeZone: "UTC",
+  };
+
+  // const hours = now.getUTCHours();
+  // const minutes = now.getUTCMinutes();
+  // const seconds = now.getUTCSeconds();
+
+  // const time = `${hours.toString().padStart(2, "0")}:${minutes
+  //   .toString()
+  //   .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  const time = now.toLocaleTimeString("en-US", options);
 
   document.querySelector(".date").textContent = dayOfWeek;
   document.querySelector(".time").textContent = time;
